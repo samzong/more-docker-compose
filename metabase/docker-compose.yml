@@ -1,0 +1,41 @@
+version: "3"
+services:
+  metabase:
+    image: metabase/metabase:v0.44.5
+    container_name: metabase
+    depends_on:
+      - metabase_mysql
+    environment:
+      - env=Mac
+      - MB_PLUGINS_DIR=/plugins
+      - MB_DB_TYPE=mysql
+      - MB_DB_PORT=3306
+      - MB_DB_DBNAME=metabase
+      - MB_DB_USER=metabase
+      - MB_DB_PASS=my_secret_password
+      - MB_DB_HOST=metabase_mysql
+      # - MB_DB_CONNECTION_URI="mysql://mysql:3306/metabase?user=metabase&password=my_secret_password&useSSL=false"
+    ports:
+      - "3030:3000"
+    volumes:
+      - ${DATA_FOLDER}/plugins:/plugins
+    links:
+      - metabase_mysql
+    networks:
+      - metabase-net
+  metabase_mysql:
+    image: mysql:8.0.31
+    container_name: metabase_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=my_secret_password
+      - MYSQL_DATABASE=metabase
+      - MYSQL_USER=metabase
+      - MYSQL_PASSWORD=my_secret_password
+    command: [ '--default-authentication-plugin=mysql_native_password' ]
+    volumes:
+      - ${DATA_FOLDER}/mysql-data:/var/lib/mysql
+      - ${DATA_FOLDER}/conf.d:/etc/mysql/conf.d
+    networks:
+      - metabase-net
+networks:
+  metabase-net:
