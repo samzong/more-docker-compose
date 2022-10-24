@@ -1,0 +1,8 @@
+superset/
+gitea/
+n8n/mysql-data/
+redash.io/postgres-data/
+registry/
+victoria-metrics/victoria-metrics-data/
+openpitrix/openpitrix-v0.4.1-docker-compose/data/
+minio/data/
