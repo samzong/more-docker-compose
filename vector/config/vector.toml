@@ -1,0 +1,28 @@
+# Set global options
+data_dir = "/var/lib/vector"
+
+[api]
+enabled = false
+# address = "0.0.0.0:8686"
+
+[sources.kafka-cp]
+type = "kafka"
+bootstrap_servers = "0.133.3.103:37614,0.133.3.103:14671,0.133.3.103:11925"
+group_id = "consumer-vector"
+topics = ["kpanda_resources"]
+decoding.codec = "json"
+
+[sinks.elasticsearch-redash]
+type = "elasticsearch"
+inputs = ["kafka-cp"]
+endpoint = "https://10.6.51.101:31001/"
+auth.strategy = "basic"
+auth.user = "elastic"
+auth.password = "---"
+bulk.index = "kpanda-cp-kafka-vector-%Y-%m"
+tls.verify_certificate = false
+
+# [sinks.console]
+# type = "console"
+# inputs = ["kafka-cp"]
+# encoding.codec = "json"

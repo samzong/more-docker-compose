@@ -1,0 +1,16 @@
+version: '3'
+services:
+  vector:
+    image: timberio/vector:0.24.2-debian # 镜像
+    container_name: vector # 容器名
+    hostname: vector
+    volumes:
+      - ${DATA_FOLDER}/config/:/etc/vector/ # 挂载配置文件
+      - /etc/localtime:/etc/localtime # 跟宿主机时区保持一致
+    ports:
+      - 9598:9598 # metrics信息暴露端口，后面会讲到
+      - 8686:8686
+    #    environment:                               # 开启DEBUG模式，这里不开启
+    #      VECTOR_LOG: debug
+    # entrypoint: "vector --config /etc/vector/vector.toml"
+    # restart: always
