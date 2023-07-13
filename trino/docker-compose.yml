@@ -4,9 +4,11 @@ services:
     image: trinodb/trino:latest
     container_name: trino
     environment:
-      - env=Mac
+      - foo=bar
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080:8080"
     volumes:
       - ${DATA_FOLDER}/catalog:/etc/trino/catalog
+      - ${DATA_FOLDER}/data:/etc/trino/pemdata
+      - ${DATA_FOLDER}/jvm.config:/etc/jvm.config
       - ${DATA_FOLDER}/config.properties:/etc/config.properties

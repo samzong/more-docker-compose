@@ -1,0 +1,1 @@
+docker run --name canal-adapter-cp -p 8081:8081 -v /Users/samzonglu/deploy/canal/adapter/conf:/opt/canal-adapter/conf -d slpcat/canal-adapter:v1.1.5

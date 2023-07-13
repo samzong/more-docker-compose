@@ -1,0 +1,6 @@
+trino:
+  environment:
+    foo: bar
+  repository:
+    image: release-ci.daocloud/product/trinodb/trino
+    tag: latest

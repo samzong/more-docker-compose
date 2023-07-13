@@ -1,0 +1,8 @@
+# Create on 2022-10-26T10:19:58+08:00
+# Katenary command line: katenary convert -c docker-compose.yml -o ./charts
+apiVersion: v2
+appVersion: 0.0.1
+description: A helm chart for trino
+name: trino
+type: application
+version: 0.1.0

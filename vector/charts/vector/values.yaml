@@ -1,0 +1,4 @@
+vector:
+  repository:
+    image: timberio/vector
+    tag: 0.24.2-debian

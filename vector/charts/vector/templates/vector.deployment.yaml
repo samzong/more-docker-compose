@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Release.Name }}-vector'
+  labels:
+    katenary.io/component: vector
+    katenary.io/project: '{{ .Chart.Name }}'
+    katenary.io/release: '{{ .Release.Name }}'
+  annotations:
+    katenary.io/docker-compose-sha1: 5bd73d6912b8e7ab9e6808cd787c4ce9f8f10950
+    katenary.io/version: 2.0.0-beta2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      katenary.io/component: vector
+      katenary.io/release: '{{ .Release.Name }}'
+  template:
+    metadata:
+      labels:
+        katenary.io/component: vector
+        katenary.io/release: '{{ .Release.Name }}'
+    spec:
+      containers:
+        - name: vector
+          image: '{{ .Values.vector.repository.image }}{{ if ne .Values.vector.repository.tag "" }}:{{ .Values.vector.repository.tag }}{{ end }}'
+          ports:
+            - name: vector
+              containerPort: 9598
+            - name: vector-8686
+              containerPort: 8686
+

@@ -21,8 +21,3 @@ auth.user = "elastic"
 auth.password = "---"
 bulk.index = "kpanda-cp-kafka-vector-%Y-%m"
 tls.verify_certificate = false
-
-# [sinks.console]
-# type = "console"
-# inputs = ["kafka-cp"]
-# encoding.codec = "json"

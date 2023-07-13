@@ -1,0 +1,1 @@
+docker run --name canal-server-cp -p 11111:11111 -v/Users/samzonglu/deploy/canal/conf/example:/home/admin/canal-server/conf/example -d canal/canal-server:latest
